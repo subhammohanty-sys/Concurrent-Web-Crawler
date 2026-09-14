@@ -2,10 +2,13 @@ package crawler;
 
 import crawler.io.ResultWriter;
 import crawler.state.CrawlState;
+import crawler.strategy.CleanTextExtractionStrategy;
 import crawler.strategy.EmailExtractionStrategy;
 import crawler.strategy.ExtractionStrategy;
+import crawler.strategy.ImageExtractionStrategy;
 import crawler.strategy.LinkExtractionStrategy;
-
+import crawler.strategy.MetadataExtractionStrategy;
+import crawler.strategy.PhoneNumberExtractionStrategy;
 import crawler.strategy.TitleExtractionStrategy;
 
 import java.io.IOException;
@@ -47,7 +50,11 @@ public class Main {
             List<ExtractionStrategy> strategies = Arrays.asList(
                     new LinkExtractionStrategy(),
                     new EmailExtractionStrategy(writer),
-                    new TitleExtractionStrategy(writer) // Added to extract Page Titles!
+                    new TitleExtractionStrategy(writer), // Added to extract Page Titles!
+                    new ImageExtractionStrategy(writer),
+                    new MetadataExtractionStrategy(writer),
+                    new PhoneNumberExtractionStrategy(writer),
+                    new CleanTextExtractionStrategy(writer)
             );
 
             WebCrawler crawler = new WebCrawler(maxThreads, maxPages, state, strategies);
