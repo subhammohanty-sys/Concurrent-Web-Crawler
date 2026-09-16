@@ -53,5 +53,3 @@ To test the crawler, you can use safe sandbox websites designed for scraping tes
    `java -cp src crawler.Main https://www.scrapethissite.com/ 5 15`
 3. After the run completes (check the console for execution time and statistics), open `results.csv` in Excel or a text editor to verify that Links, Images, and text snippets were correctly captured.
 
-## Screenshots
-*(Add a screenshot of the CLI output or the `results.csv` file here)*
