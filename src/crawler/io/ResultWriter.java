@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Module 3: Exception Handling & I/O
+ * Exception Handling & I/O
  * Streams extracted datasets directly to disk to prevent Memory exhaustion (OOM).
  * Thread-safe writing capability.
  */

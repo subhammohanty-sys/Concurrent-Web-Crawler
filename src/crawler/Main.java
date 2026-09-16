@@ -46,7 +46,7 @@ public class Main {
 
             CrawlState state = new CrawlState();
 
-            // Instantiate strategies (Modules 1 & 2)
+            // Instantiate strategies
             List<ExtractionStrategy> strategies = Arrays.asList(
                     new LinkExtractionStrategy(),
                     new EmailExtractionStrategy(writer),

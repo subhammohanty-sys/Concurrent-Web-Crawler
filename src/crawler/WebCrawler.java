@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Module 5: Concurrency
  * The core engine that distributes crawling tasks across a thread pool.
  */
 public class WebCrawler {
@@ -114,7 +113,7 @@ public class WebCrawler {
             if (response.statusCode() == 200) {
                 String html = response.body();
 
-                // Apply all strategies (Module 1 & 2)
+                // Apply all strategies
                 for (ExtractionStrategy strategy : strategies) {
                     List<String> extracted = strategy.extract(url, html);
                     
@@ -130,7 +129,7 @@ public class WebCrawler {
                 }
             }
         } catch (Exception e) {
-            // Module 3: Exception Handling
+            // Exception Handling
             // We catch generic Exception here to handle IOExceptions from HttpClient
             // and URISyntaxExceptions from bad URLs without crashing the crawler.
             System.err.println("Failed to crawl " + url + " - " + e.getMessage());

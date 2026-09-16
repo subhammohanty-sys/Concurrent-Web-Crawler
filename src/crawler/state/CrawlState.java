@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Module 4: Collections
+ * Collections
  * Manages the state of the crawler using Thread-Safe Collections.
  */
 public class CrawlState {
