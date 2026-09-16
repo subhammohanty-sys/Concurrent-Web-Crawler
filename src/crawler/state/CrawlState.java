@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Module 4: Collections
@@ -16,8 +17,11 @@ public class CrawlState {
     // A ConcurrentHashMap to track how many pages we've crawled per domain
     private final ConcurrentHashMap<String, Integer> domainCounts = new ConcurrentHashMap<>();
 
+    // Counter to track how many pages were actually crawled
+    private final AtomicInteger crawledCount = new AtomicInteger(0);
+
     /**
-     * Checks if a URL has been visited. If not, adds it and returns true.
+     * Checks if a URL has been discovered/queued. If not, adds it and returns true.
      * This operation is thread-safe.
      * 
      * @param url The URL to check and add.
@@ -31,6 +35,7 @@ public class CrawlState {
      * Increments the count for the domain of the given URL.
      */
     public void recordDomainVisit(String url) {
+        crawledCount.incrementAndGet();
         try {
             URI uri = new URI(url);
             String domain = uri.getHost();
@@ -44,7 +49,7 @@ public class CrawlState {
     }
 
     public int getVisitedCount() {
-        return visitedUrls.size();
+        return crawledCount.get();
     }
 
     public void printDomainStats() {
