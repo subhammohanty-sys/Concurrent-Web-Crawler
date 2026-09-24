@@ -17,6 +17,32 @@ A robust, multithreaded web crawler and data extraction engine built entirely in
 * **Resilient I/O Streaming**: Avoids JVM Memory Exhaustion (`OutOfMemoryError`) by utilizing synchronized buffered writers that stream extracted data directly to disk (`results.csv`) rather than holding massive datasets in RAM.
 * **Graceful Exception Handling**: Built to survive the chaos of the internet. Catches and logs HTTP timeouts and malformed URLs without crashing the background worker threads.
 
+## Project Structure
+```text
+Crawler/
+├── .gitignore
+├── README.md                            # Documentation and project overview
+├── results.csv                          # Streamed output CSV dataset
+├── statement.md                         # Problem statement and project scope
+└── src/
+    └── crawler/
+        ├── Main.java                    # Application entry point & CLI handler
+        ├── WebCrawler.java              # Multithreaded crawling engine & thread pool orchestrator
+        ├── io/
+        │   └── ResultWriter.java        # Thread-safe synchronized CSV writer
+        ├── state/
+        │   └── CrawlState.java          # Thread-safe state tracking visited URLs & metrics
+        └── strategy/
+            ├── ExtractionStrategy.java           # Strategy interface for data extractors
+            ├── CleanTextExtractionStrategy.java  # Strips HTML tags and extracts readable text
+            ├── EmailExtractionStrategy.java      # Regex-based email address extractor
+            ├── ImageExtractionStrategy.java      # Extracts image source (src) URLs
+            ├── LinkExtractionStrategy.java       # Discovers new hyperlinks for crawling
+            ├── MetadataExtractionStrategy.java   # Extracts HTML meta and Open Graph tags
+            ├── PhoneNumberExtractionStrategy.java# Regex-based phone number extractor
+            └── TitleExtractionStrategy.java      # Extracts HTML <title> contents
+```
+
 ## Technologies/Tools Used
 - **Language**: Java 11+
 - **Core APIs**: `java.net.http.HttpClient`, `java.util.concurrent`, `java.util.regex`

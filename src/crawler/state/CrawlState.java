@@ -7,13 +7,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Collections
  * Manages the state of the crawler using Thread-Safe Collections.
  */
 public class CrawlState {
-    // A thread-safe HashSet (backed by ConcurrentHashMap) to track visited URLs in O(1) time
+    // A thread-safe HashSet (backed by ConcurrentHashMap) to track visited URLs in
+    // O(1) time
     private final Set<String> visitedUrls = ConcurrentHashMap.newKeySet();
-    
+
     // A ConcurrentHashMap to track how many pages we've crawled per domain
     private final ConcurrentHashMap<String, Integer> domainCounts = new ConcurrentHashMap<>();
 
@@ -25,7 +25,8 @@ public class CrawlState {
      * This operation is thread-safe.
      * 
      * @param url The URL to check and add.
-     * @return true if the URL was NOT already in the set (i.e., we should visit it).
+     * @return true if the URL was NOT already in the set (i.e., we should visit
+     *         it).
      */
     public boolean markVisited(String url) {
         return visitedUrls.add(url);
